@@ -24,6 +24,9 @@ using DataAccess.EntityFramework;
 using Business.Concrete;
 using Business.Abstract;
 using Microsoft.AspNetCore.Identity;
+using MongoDB.Driver;
+using API.Configuration.Filters.Logs;
+using DataAccess.Mongo;
 
 namespace API
 {
@@ -88,6 +91,11 @@ namespace API
             services.AddScoped<IBillOrderService, BillOrderManager>();
             services.AddScoped<IMessageService, MessageManager>();
 
+            //mongoDb
+            services.AddSingleton<MongoClient>(x => new MongoClient("mongodb://localhost:27017"));
+            services.AddScoped<ICrediCartRepository, CreditCartRepository>();
+            services.AddScoped<ICreditCardService, CreditCardManager>();
+            services.AddSingleton<MsSqlLogger>();
 
 
 

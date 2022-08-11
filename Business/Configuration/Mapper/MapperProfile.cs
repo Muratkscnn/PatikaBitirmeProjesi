@@ -2,8 +2,10 @@
 using DTO.Apartment;
 using DTO.AuthorizationDTO;
 using DTO.BillOrder;
+using DTO.CreditCard;
 using DTO.RoleDTO;
 using Entity;
+using Models.Document;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +24,7 @@ namespace Business.Configuration.Mapper
             CreateMap<BillOrderAddAllApartmentRequest, BillOrder>();
             CreateMap<BillOrder, UnpaidBillResponse>();
             CreateMap<RoleAddRequest, AppRole>();
+            CreateMap<CreditCartRequest, CreditCard>();
         }
     }
 }
