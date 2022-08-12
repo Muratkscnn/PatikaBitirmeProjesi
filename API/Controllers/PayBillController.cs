@@ -24,14 +24,12 @@ namespace API.Controllers
         private IBillOrderService _billorder;
         private ICreditCardService _card;
         private IMapper _mapper;
-        private UserManager<AppUser> _user;
 
-        public PayBillController(IBillOrderService billorder, ICreditCardService card, IMapper mapper, UserManager<AppUser> user)
+        public PayBillController(IBillOrderService billorder, ICreditCardService card, IMapper mapper)
         {
             _billorder = billorder;
             _card = card;
             _mapper = mapper;
-            _user = user;
         }
 
         [HttpPost("{billId}")]

@@ -39,13 +39,22 @@ namespace API.Controllers
         {
             var validator = new RegisterModelValidator();
             validator.Validate(model).ThrowIfException();
+            var apartment = await _apartment.GetApartmentByBlockAndApartmentNo(model.BlockNo, model.ApartmentNo);
+            if (apartment==null)
+            {
+                return BadRequest("Girilen Blok No veya Daire Numarasına ait Kayıt Bulunamadı..");
+            }
             var mappedEntity = _mapper.Map<AppUser>(model);
             string Password = RandomString(6);
             var result = await _userManager.CreateAsync(mappedEntity, Password);
             if (result.Succeeded)
             {
+                var user =await _userManager.FindByNameAsync(model.UserName);
+                apartment.AppUserId = user.Id;
+                _apartment.Update(apartment);
                 return Ok(new { password = Password });
             }
+            
             return BadRequest();
         }
         
@@ -82,6 +91,14 @@ namespace API.Controllers
             return BadRequest();
         }
 
+
+        [HttpDelete("{userName}")]
+        public async Task<IActionResult> DeleteUser(string userName)
+        {
+            var user =await _userManager.FindByNameAsync(userName);
+            await _userManager.DeleteAsync(user);
+            return Ok();
+        }
         private async Task<string> GetUserRole(AppUser user)
         {
             var roles = await _userManager.GetRolesAsync(user);

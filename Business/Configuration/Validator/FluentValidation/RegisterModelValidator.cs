@@ -18,7 +18,8 @@ namespace Business.Configuration.Validator.FluentValidation
             RuleFor(x => x.UserName).NotEmpty().WithMessage("Kullanıcı Adı Giriniz.");
             RuleFor(x => x.PhoneNumber).NotEmpty().WithMessage("Telefon Numarası Giriniz.");
             RuleFor(x => x.TcNo).NotEmpty().WithMessage("Türkiye Cumhuriyeti Kimlik Numarası Giriniz.");
-
+            RuleFor(x => x.BlockNo).NotEmpty().WithMessage("Blok No Giriniz.");
+            RuleFor(x => x.ApartmentNo).NotEmpty().WithMessage("Daire Numarası Giriniz.");
         }
     }
 }

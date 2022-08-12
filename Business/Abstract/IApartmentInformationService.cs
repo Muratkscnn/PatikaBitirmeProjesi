@@ -10,5 +10,6 @@ namespace Business.Abstract
     public interface IApartmentInformationService : IGenericService<ApartmentInformation>
     {
         Task<ApartmentInformation> GetApartmentIdByUserId(int userId);
+        Task<ApartmentInformation> GetApartmentByBlockAndApartmentNo(string blockNo, int apartmentNo);
     }
 }

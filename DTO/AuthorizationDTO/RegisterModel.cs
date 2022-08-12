@@ -15,5 +15,7 @@ namespace DTO.AuthorizationDTO
         public string PhoneNumber { get; set; }
         public string TcNo { get; set; }
         public string PlateNo { get; set; }
+        public string BlockNo { get; set; }
+        public int ApartmentNo { get; set; }
     }
 }

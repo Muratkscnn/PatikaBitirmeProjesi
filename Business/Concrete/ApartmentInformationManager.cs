@@ -50,5 +50,10 @@ namespace Business.Concrete
              _unitOfWork.ApartmentInformations.Update(t);
              _unitOfWork.SaveAsync();
         }
+
+        public async Task<ApartmentInformation> GetApartmentByBlockAndApartmentNo(string blockNo, int apartmentNo)
+        {
+            return await _unitOfWork.ApartmentInformations.Get(x => x.BlockNo == blockNo && x.ApartmentNo == apartmentNo);
+        }
     }
 }
