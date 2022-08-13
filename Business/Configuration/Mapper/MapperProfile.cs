@@ -19,12 +19,15 @@ namespace Business.Configuration.Mapper
         public MapperProfile()
         {
             CreateMap<RegisterModel, AppUser>();
+            CreateMap<AdminRegisterRequest, AppUser>();
             CreateMap<ApartmentRequest, ApartmentInformation>();
             CreateMap<BillOrderAddByApartmentIdRequest, BillOrder>();
             CreateMap<BillOrderAddAllApartmentRequest, BillOrder>();
+            CreateMap<AddDuesRequest, BillOrder>();
             CreateMap<BillOrder, UnpaidBillResponse>();
             CreateMap<RoleAddRequest, AppRole>();
             CreateMap<CreditCartRequest, CreditCard>();
+            CreateMap<BillOrder, PaidBillResponse>();
         }
     }
 }

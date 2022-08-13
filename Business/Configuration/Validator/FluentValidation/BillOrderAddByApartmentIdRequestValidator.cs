@@ -15,7 +15,8 @@ namespace Business.Configuration.Validator.FluentValidation
             RuleFor(x => x.Name).NotEmpty().WithMessage("Fatura Adını Giriniz.");
             RuleFor(x => x.Price).NotEmpty().WithMessage("Fatur Ücretini Giriniz.");
             RuleFor(x => x.LastPaymentDate).NotEmpty().WithMessage("Son Ödeme Tarihi Giriniz.");
-            RuleFor(x => x.ApartmentInformationId).NotEmpty().WithMessage("Faturanın Atanacağı Daire Id Giriniz.");
+            RuleFor(x => x.BlockNo).NotEmpty().WithMessage("Faturanın Atanacağı Block No Giriniz.");
+            RuleFor(x => x.ApartmentNo).NotEmpty().WithMessage("Faturanın Atanacağı Daire No Giriniz.");
         }
     }
 }

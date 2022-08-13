@@ -8,6 +8,6 @@ namespace Business.Configuration.Jwt
 {
     public interface IJwtAuthenticationService
     {
-        public string Authenticate(string userId,string apartmentInfoId,string role);
+        public string Authenticate(string userId,string role, string apartmentInfoId = "0");
     }
 }

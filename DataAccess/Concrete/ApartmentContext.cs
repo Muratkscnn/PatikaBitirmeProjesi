@@ -1,4 +1,5 @@
-﻿using Entity;
+﻿using DataAccess.Concrete.EntityConfig;
+using Entity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,7 +19,12 @@ namespace DataAccess.Concrete
         public DbSet<ApartmentInformation> ApartmentInformations { get; set; }
         public DbSet<BillOrder> BillOrders { get; set; }
         public DbSet<Message> Messages { get; set; }
-
-        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new ApartmentInformationConfig());
+            modelBuilder.ApplyConfiguration(new BillOrderConfig());
+            modelBuilder.ApplyConfiguration(new AppRoleConfig());
+        }
     }
 }

@@ -5,6 +5,7 @@ using Business.Configuration.Jwt;
 using Business.Configuration.Validator.FluentValidation;
 using DTO.AuthorizationDTO;
 using Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -33,7 +34,7 @@ namespace API.Controllers
             _mapper = mapper;
             _apartment = apartment;
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Register(RegisterModel model)
         {
@@ -74,13 +75,18 @@ namespace API.Controllers
                 ApartmentInformation apartmentInfo;
                 if (await _apartment.GetApartmentIdByUserId(user.Id) == null)
                 {
+                    if (role=="Admin")
+                    {
+                         var token = _jWT.Authenticate(user.Id.ToString(),role);
+                        return Ok(token);
+                    }
                     return BadRequest("Bu kullanıcıya Atanmış bir Daire olmadığından Giriş Yapılamaz..");
                 }
                 else
                 {
                     apartmentInfo = await _apartment.GetApartmentIdByUserId(user.Id);
                 }
-                var userToken = _jWT.Authenticate(user.Id.ToString(),apartmentInfo.ApartmentInformationId.ToString(),role);
+                var userToken = _jWT.Authenticate(user.Id.ToString(),role, apartmentInfo.ApartmentInformationId.ToString());
                 var response = new LoginResponse()
                 {
                     ApartmentInfoId = apartmentInfo.ApartmentInformationId,
@@ -88,17 +94,61 @@ namespace API.Controllers
                 };
                 return Ok(response);
             }
-            return BadRequest();
+            return BadRequest("Şifre Hatalı.");
         }
 
-
-        [HttpDelete("{userName}")]
+        [Authorize(Roles = "Admin")]
+        [HttpDelete()]
         public async Task<IActionResult> DeleteUser(string userName)
         {
             var user =await _userManager.FindByNameAsync(userName);
             await _userManager.DeleteAsync(user);
             return Ok();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> PasswordChange(PasswordChangeRequest model)
+        {
+
+            var userId = User.Claims.FirstOrDefault(x => x.Type == "id").Value;
+            var validator = new PasswordChangeRequestValidator();
+            validator.Validate(model).ThrowIfException();
+            var user = await _userManager.FindByIdAsync(userId);
+            var checkPass=await _userManager.CheckPasswordAsync(user, model.CurrentPassword);
+            if (!checkPass)
+            {
+                return BadRequest("Girdiğiniz şifre hatalı.");
+            }
+            var result=await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+            if (result.Succeeded)
+            {
+                return Ok("Şifre Değiştirildi..");
+            }
+            else
+            {
+                return BadRequest(result.Errors);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AdminRegister(AdminRegisterRequest model)
+        {
+            var mappedEntity = _mapper.Map<AppUser>(model);
+            var result = await _userManager.CreateAsync(mappedEntity, model.Password);
+            if (result.Succeeded)
+            {
+                var user = await _userManager.FindByNameAsync(model.UserName);
+                await _userManager.AddToRoleAsync(user, "Admin");
+                return Ok("Admin Rolündeki Kullanıcı Oluşturuldu..");
+            }
+            return BadRequest();
+        }
+
+
+
+
+
+
         private async Task<string> GetUserRole(AppUser user)
         {
             var roles = await _userManager.GetRolesAsync(user);

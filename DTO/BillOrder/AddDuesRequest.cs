@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace DTO.BillOrder
 {
-    public class UnpaidBillResponse
+    public class AddDuesRequest
     {
-        public string Name { get; set; }
         public double Price { get; set; }
-        public string PaymentDate { get; set; }
         public string LastPaymentDate { get; set; }
-        public string BlockNo { get; set; }
-        public int ApartmentNo { get; set; }
     }
 }

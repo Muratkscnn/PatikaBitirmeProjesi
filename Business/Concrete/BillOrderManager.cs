@@ -30,6 +30,16 @@ namespace Business.Concrete
              _unitOfWork.SaveAsync();
         }
 
+        public async Task<IEnumerable<BillOrder>> GetAllPaidBills()
+        {
+            return await _unitOfWork.BillOrders.GetAll(x=>x.PaymentDate!=null);
+        }
+
+        public async Task<BillOrder> GetBillOrderByBlockNo(string blockNo, int apartmentNo)
+        {
+            return await _unitOfWork.BillOrders.Get(x => x.ApartmentInformation.BlockNo == blockNo && x.ApartmentInformation.ApartmentNo == apartmentNo);
+        }
+
         public async Task<BillOrder> GetById(int id)
         {
             return await _unitOfWork.BillOrders.Get(x => x.BillOrderId == id);
@@ -40,14 +50,53 @@ namespace Business.Concrete
             return await _unitOfWork.BillOrders.GetAll();
         }
 
+        public async Task<List<BillOrder>> GetMonthPaid()
+        {
+            return (List<BillOrder>)await _unitOfWork.BillOrders.GetUnpaidAllApartment(x=>x.PaymentDate.Value.Month == DateTime.Now.Month);
+        }
+        public async Task<List<BillOrder>> GetMonthUnPaid()
+        {
+            return (List<BillOrder>)await _unitOfWork.BillOrders.GetUnpaidAllApartment(x => x.LastPaymentDate.Month == DateTime.Now.Month && x.PaymentDate == null);
+        }
+
+        public async Task<IEnumerable<BillOrder>> GetPaidBill(string blockNo, int apartmentNo)
+        {
+            return await _unitOfWork.BillOrders.GetAll(x => x.PaymentDate != null && x.ApartmentInformation.BlockNo==blockNo && x.ApartmentInformation.ApartmentNo==apartmentNo);
+        }
+
+        public async Task<IEnumerable<BillOrder>> GetpaidByUser(int id)
+        {
+            return await _unitOfWork.BillOrders.GetUnpaidAllApartment(x => x.PaymentDate != null);
+        }
+
+        public async Task<double> GetTotalPayment()
+        {
+            var value = await _unitOfWork.BillOrders.GetAll(x => x.PaymentDate != null);
+            if (value==null)
+            {
+                return 0;
+            }
+            return value.ToList().Sum(x => x.Price);
+        }
+
+        public async Task<double> GetTotalUnpaidBill()
+        {
+            var value = await _unitOfWork.BillOrders.GetAll(x => x.PaymentDate == null);
+            if (value == null)
+            {
+                return 0;
+            }
+            return value.ToList().Sum(x => x.Price);
+        }
+
         public async Task<IEnumerable<BillOrder>> GetUnpaidAllApartment()
         {
-            return await _unitOfWork.BillOrders.GetAll(x => x.PaymentDate == null);
+            return await _unitOfWork.BillOrders.GetUnpaidAllApartment(x => x.PaymentDate == null);
         }
 
         public async Task<IEnumerable<BillOrder>> GetUnpaidByUser(int id)
         {
-            return await _unitOfWork.BillOrders.GetAll(x => x.PaymentDate == null && x.ApartmentInformationId==id);
+            return await _unitOfWork.BillOrders.GetUnpaidAllApartment(x => x.PaymentDate == null && x.ApartmentInformationId==id);
         }
 
         public void Update(BillOrder t)

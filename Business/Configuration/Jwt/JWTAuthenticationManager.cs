@@ -18,7 +18,7 @@ namespace Business.Configuration.Jwt
             _tokenKey = tokenKey;
         }
 
-        public string Authenticate(string userId, string apartmentInfoId,string role)
+        public string Authenticate(string userId,string role, string apartmentInfoId)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var tokenDescriptor = new SecurityTokenDescriptor

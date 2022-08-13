@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace API.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class ApartmentController : ControllerBase
@@ -56,9 +57,6 @@ namespace API.Controllers
             {
                 return BadRequest($"Id={id} Daire Bulanamadı..");
             }
-
-            //var mappedEntity = _mapper.Map<ApartmentInformation>(model);
-            //mappedEntity.ApartmentInformationId = entity.ApartmentInformationId;
             entity.ApartmentNo = model.ApartmentNo;
             entity.ApartmentType = model.ApartmentType;
             entity.AppUserId = model.AppUserId;

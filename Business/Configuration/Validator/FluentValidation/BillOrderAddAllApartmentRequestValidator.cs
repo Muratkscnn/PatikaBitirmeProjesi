@@ -13,7 +13,7 @@ namespace Business.Configuration.Validator.FluentValidation
         public BillOrderAddAllApartmentRequestValidator()
         {
             RuleFor(x => x.Name).NotEmpty().WithMessage("Fatura Adını Giriniz.");
-            RuleFor(x => x.Price).NotEmpty().WithMessage("Fatur Ücretini Giriniz.");
+            RuleFor(x => x.Price).NotEmpty().WithMessage("Fatura Ücretini Giriniz.");
             RuleFor(x => x.LastPaymentDate).NotEmpty().WithMessage("Son Ödeme Tarihi Giriniz.");
         }
     }

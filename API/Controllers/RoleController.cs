@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DTO.RoleDTO;
 using Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace API.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class RoleController : ControllerBase
@@ -26,6 +28,7 @@ namespace API.Controllers
             _userManager = userManager;
         }
 
+
         [HttpPost]
         public async Task<IActionResult> AddRole(RoleAddRequest model)
         {
@@ -33,12 +36,13 @@ namespace API.Controllers
             await _roleManager.CreateAsync(mappedEntity);
             return Ok($"{model.Name} Başarıyla Eklendi..");
         }
+
         [HttpPost]
-        public async Task<IActionResult> AssigningAdminRoleToUser(string userId)
+        public async Task<IActionResult> AssigningAdminRoleToUser(string userName)
         {
-            var user=await _userManager.FindByIdAsync(userId);
+            var user=await _userManager.FindByNameAsync(userName);
             await _userManager.AddToRoleAsync(user, "Admin");
-            return Ok();
+            return Ok($"{userName} Kullanıcısına Admin Rolü Atandı.");
         }
     }
 }

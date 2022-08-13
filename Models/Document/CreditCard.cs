@@ -13,5 +13,6 @@ namespace Models.Document
         public string CardNumber { get; set; }
         public int ExpireMonth { get; set; }
         public int ExpireYear { get; set; }
+        public double Amount { get; set; }
     }
 }

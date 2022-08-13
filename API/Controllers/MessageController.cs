@@ -27,7 +27,7 @@ namespace API.Controllers
             _mapper = mapper;
             _userManager = userManager;
         }
-
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> SendMessageToAdmin(SendMessageToAdminRequest model)
         {

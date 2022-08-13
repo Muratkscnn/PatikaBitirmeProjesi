@@ -69,12 +69,13 @@ namespace API.Controllers
             var validator = new CreditCardValidator();
             validator.Validate(model).ThrowIfException();
             var mappedEntity = _mapper.Map<CreditCard>(model);
-            _card.Add(mappedEntity);
             foreach (var item in unpaidBill)
             {
                 item.PaymentDate = DateTime.Now;
                 _billorder.Update(item);
+                mappedEntity.Amount += item.Price;
             }
+            _card.Add(mappedEntity);
             return Ok("Tüm Faturalar Ödenmiştir..");
         }
     }

@@ -28,17 +28,20 @@ namespace API.Controllers
             _mapper = mapper;
             _apartment = apartment;
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
-        public async Task<IActionResult> BillOrderAddByApartmentID(BillOrderAddByApartmentIdRequest model)
+        public async Task<IActionResult> BillOrderAddByApartment(BillOrderAddByApartmentIdRequest model)
         {
             var validator = new BillOrderAddByApartmentIdRequestValidator();
             validator.Validate(model).ThrowIfException();
             DateTime.Parse(model.LastPaymentDate);
             var mappedEntity = _mapper.Map<BillOrder>(model);
+            var apartment = await _billOrder.GetBillOrderByBlockNo(model.BlockNo, model.ApartmentNo);
+            mappedEntity.ApartmentInformationId = apartment.ApartmentInformationId;
             await _billOrder.Add(mappedEntity);
             return Ok(mappedEntity);
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> BillOrderAddAllApartment(BillOrderAddAllApartmentRequest model)
         {
@@ -54,7 +57,22 @@ namespace API.Controllers
             }
             return Ok("Tüm Dairelere Fatura Tanımlaması Yapıldı..");
         }
-
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public async Task<IActionResult> AddDues(AddDuesRequest model)
+        {
+            DateTime.Parse(model.LastPaymentDate);
+            var apartmentList = await _apartment.GetList();
+            foreach (var item in apartmentList)
+            {
+                var mappedEntity = _mapper.Map<BillOrder>(model);
+                mappedEntity.ApartmentInformationId = item.ApartmentInformationId;
+                mappedEntity.Name = "Aidat";
+                await _billOrder.Add(mappedEntity);
+            }
+            return Ok("Tüm Dairelere Fatura Tanımlaması Yapıldı..");
+        }
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> GetUnpaidAllApartment()
         {
@@ -62,8 +80,10 @@ namespace API.Controllers
             var result = new List<UnpaidBillResponse>();
             foreach (var item in unpaidBill)
             {
-                ((DateTime)item.LastPaymentDate).ToString("dd-MMM-yyyy");
                 var mappedEntity = _mapper.Map<UnpaidBillResponse>(item);
+                mappedEntity.LastPaymentDate =((DateTime)item.LastPaymentDate).ToString("dd-MMM-yyyy");
+                mappedEntity.BlockNo = item.ApartmentInformation.BlockNo;
+                mappedEntity.ApartmentNo = item.ApartmentInformation.ApartmentNo;
                 result.Add(mappedEntity);
             }
             return Ok(result);
@@ -80,6 +100,27 @@ namespace API.Controllers
             {
                 var mappedEntity = _mapper.Map<UnpaidBillResponse>(item);
                 mappedEntity.LastPaymentDate = ((DateTime)item.LastPaymentDate).ToString("dd-MMM-yyyy");
+                mappedEntity.BlockNo = item.ApartmentInformation.BlockNo;
+                mappedEntity.ApartmentNo = item.ApartmentInformation.ApartmentNo;
+                result.Add(mappedEntity);
+            }
+            return Ok(result);
+        }
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> GetPaidBillByUser()
+        {
+            var apartmentInfoId = User.Claims.FirstOrDefault(x => x.Type == "apartmentInfoId").Value;
+
+            var unpaidBill = await _billOrder.GetpaidByUser(int.Parse(apartmentInfoId));
+            var result = new List<UnpaidBillResponse>();
+            foreach (var item in unpaidBill)
+            {
+                var mappedEntity = _mapper.Map<UnpaidBillResponse>(item);
+                mappedEntity.LastPaymentDate = ((DateTime)item.LastPaymentDate).ToString("dd-MMM-yyyy");
+                mappedEntity.PaymentDate = ((DateTime)item.PaymentDate).ToString("dd-MMM-yyyy");
+                mappedEntity.BlockNo = item.ApartmentInformation.BlockNo;
+                mappedEntity.ApartmentNo = item.ApartmentInformation.ApartmentNo;
                 result.Add(mappedEntity);
             }
             return Ok(result);
