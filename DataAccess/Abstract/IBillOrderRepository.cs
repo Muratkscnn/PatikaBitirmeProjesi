@@ -10,6 +10,6 @@ namespace DataAccess.Abstract
 {
     public interface IBillOrderRepository : IGenericRepository<BillOrder>
     {
-        Task<IEnumerable<BillOrder>> GetUnpaidAllApartment(Expression<Func<BillOrder, bool>> expression = null);
+        Task<IEnumerable<BillOrder>> GetAllWithApartmentInfo(Expression<Func<BillOrder, bool>> expression = null);
     }
 }

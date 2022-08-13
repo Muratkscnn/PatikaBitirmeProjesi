@@ -28,7 +28,7 @@ namespace DataAccess.EntityFramework
             return await _context.Set<BillOrder>().Where(x => x.LastPaymentDate.Month == DateTime.Now.Month).ToListAsync();
         }
 
-        public async Task<IEnumerable<BillOrder>> GetUnpaidAllApartment(Expression<Func<BillOrder, bool>> expression = null)
+        public async Task<IEnumerable<BillOrder>> GetAllWithApartmentInfo(Expression<Func<BillOrder, bool>> expression = null)
         {
             if (expression == null)
                 return await _context.Set<BillOrder>().Include(x=>x.ApartmentInformation).ToListAsync();

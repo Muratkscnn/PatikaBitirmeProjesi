@@ -32,8 +32,11 @@ namespace API.Controllers
             List<PaidBillResponse> response = new List<PaidBillResponse>();
             foreach (var item in values)
             {
-                ((DateTime)item.PaymentDate).ToShortDateString();
-                response.Add(_mapper.Map<PaidBillResponse>(item));
+                var mappedEntity = _mapper.Map<PaidBillResponse>(item);
+                mappedEntity.PaymentDate = ((DateTime)item.PaymentDate).ToString("dd-MMM-yyyy");
+                mappedEntity.BlockNo = item.ApartmentInformation.BlockNo;
+                mappedEntity.ApartmentNo = item.ApartmentInformation.ApartmentNo;
+                response.Add(mappedEntity);
             }
             return Ok(response);
         }
@@ -44,8 +47,12 @@ namespace API.Controllers
             List<PaidBillResponse> response = new List<PaidBillResponse>();
             foreach (var item in values)
             {
-                ((DateTime)item.PaymentDate).ToShortDateString();
-                response.Add(_mapper.Map<PaidBillResponse>(item));
+                var mappedEntity = _mapper.Map<PaidBillResponse>(item);
+                mappedEntity.PaymentDate = ((DateTime)item.PaymentDate).ToString("dd-MMM-yyyy");
+                mappedEntity.BlockNo = item.ApartmentInformation.BlockNo;
+                mappedEntity.ApartmentNo = item.ApartmentInformation.ApartmentNo;
+                response.Add(mappedEntity);
+               
             }
             return Ok(response);
             
