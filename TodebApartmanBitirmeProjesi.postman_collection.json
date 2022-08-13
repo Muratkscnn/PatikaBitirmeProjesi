@@ -1,0 +1,1079 @@
+{
+	"info": {
+		"_postman_id": "907a477f-0d33-4e5d-9baa-732a91ede064",
+		"name": "TodebApartmanBitirmeProjesi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20638391"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Kullanıcı İşlemleri",
+					"item": [
+						{
+							"name": "Kullanıcı Kaydet",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"userName\": \"string\",\r\n  \"email\": \"string\",\r\n  \"phoneNumber\": \"string\",\r\n  \"tcNo\": \"string\",\r\n  \"plateNo\": \"string\",\r\n  \"blockNo\": \"string\",\r\n  \"apartmentNo\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:44397/api/Authorization/Register",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"Authorization",
+										"Register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Admin Rolü Atama",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44397/api/Role/AssigningAdminRoleToUser?userName=muratkscn",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"Role",
+										"AssigningAdminRoleToUser"
+									],
+									"query": [
+										{
+											"key": "userName",
+											"value": "muratkscn"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Kullanıcı Sil",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44397/api/Authorization/DeleteUser?userName=string",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"Authorization",
+										"DeleteUser"
+									],
+									"query": [
+										{
+											"key": "userName",
+											"value": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Daire İşlemleri",
+					"item": [
+						{
+							"name": "Tüm Daire Bilgileri",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44397/api/Apartment/GetApartmentList",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"Apartment",
+										"GetApartmentList"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Daire Bilgisi / {id}",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44397/api/Apartment/GetAparmentInformationById/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"Apartment",
+										"GetAparmentInformationById",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Daire Ekle",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"blockNo\": \"string\",\r\n  \"apartmentType\": \"string\",\r\n  \"floor\": 0,\r\n  \"apartmentNo\": 0,\r\n  \"appUserId\": 0\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:44397/api/Apartment/ApartmentAdd",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"Apartment",
+										"ApartmentAdd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Daire Düzenle/{id}",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"blockNo\": \"string\",\r\n  \"apartmentType\": \"string\",\r\n  \"floor\": 0,\r\n  \"apartmentNo\": 0,\r\n  \"appUserId\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:44397/api/Apartment/ApartmentUpdate/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"Apartment",
+										"ApartmentUpdate",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Daire Sil /{id}",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44397/api/Apartment/ApartmentDelete/25",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"Apartment",
+										"ApartmentDelete",
+										"25"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Fatura İşlemleri",
+					"item": [
+						{
+							"name": "Tüm Dairelere Fatura Ata",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"string\",\r\n  \"price\": 0,\r\n  \"lastPaymentDate\": \"string\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:44397/api/BillOrder/BillOrderAddAllApartment",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"BillOrder",
+										"BillOrderAddAllApartment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Daireye Fatura Ata",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"string\",\r\n  \"price\": 0,\r\n  \"lastPaymentDate\": \"string\",\r\n  \"blockNo\": \"string\",\r\n  \"apartmentNo\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:44397/api/BillOrder/BillOrderAddByApartment",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"BillOrder",
+										"BillOrderAddByApartment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Aidat Ata",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"price\": 0,\r\n  \"lastPaymentDate\": \"string\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:44397/api/BillOrder/AddDues",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"BillOrder",
+										"AddDues"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ödenmemiş Fatura Bilgileri",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44397/api/BillOrder/GetUnpaidAllApartment",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"BillOrder",
+										"GetUnpaidAllApartment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ödenmiş Fatura Bilgileri",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44397/api/Admin/GetAllUserPaidBills",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"Admin",
+										"GetAllUserPaidBills"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Mesajlar",
+					"item": [
+						{
+							"name": "Gelen Mesajlar",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44397/api/Message/GetAllMessages",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"Message",
+										"GetAllMessages"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Okunamamış Mesajlar",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44397/api/Message/GetUnReadMessage",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"Message",
+										"GetUnReadMessage"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Mesajı Getir (id)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44397/api/Message/GetMessageById/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"Message",
+										"GetMessageById",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Ödemeler",
+					"item": [
+						{
+							"name": "Ödenen Toplam Tutar",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44397/api/Admin/GetTotalPayment",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"Admin",
+										"GetTotalPayment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ödenmemiş Toplam Tutar",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44397/api/Admin/GetTotalUnpaidBill",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"Admin",
+										"GetTotalUnpaidBill"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Dairenin Ödenen Faturaları",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44397/api/Admin/GetPaidBillsByUser?blockNo=A&apartmentNo=1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"Admin",
+										"GetPaidBillsByUser"
+									],
+									"query": [
+										{
+											"key": "blockNo",
+											"value": "A"
+										},
+										{
+											"key": "apartmentNo",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Bu Ay Gelen Ödemeler",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44397/api/Admin/GetMonthPaid",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"Admin",
+										"GetMonthPaid"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Bu Ay Ödenmeyen Faturalar",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44397/api/Admin/GetMonthUnPaid",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"Admin",
+										"GetMonthUnPaid"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Kullanıcı",
+			"item": [
+				{
+					"name": "Fatura Ödeme İşlemleri",
+					"item": [
+						{
+							"name": "Tüm Faturaları Öde",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODMzMzAsImV4cCI6MTY2MDM4NjkzMCwiaWF0IjoxNjYwMzgzMzMwfQ.Fqyl_dD47_PDg9reWtBReE6j2ALsZwmG8LFuajIC68Y",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"customerName\": \"string\",\r\n  \"cardNumber\": \"string\",\r\n  \"expireMonth\": 0,\r\n  \"expireYear\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:44397/api/PayBill/PayAllBills",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"PayBill",
+										"PayAllBills"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fatura Öde (Billid)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODMzMzAsImV4cCI6MTY2MDM4NjkzMCwiaWF0IjoxNjYwMzgzMzMwfQ.Fqyl_dD47_PDg9reWtBReE6j2ALsZwmG8LFuajIC68Y",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"customerName\": \"string\",\r\n  \"cardNumber\": \"string\",\r\n  \"expireMonth\": 0,\r\n  \"expireYear\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:44397/api/PayBill/PayBillById/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"PayBill",
+										"PayBillById",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Mesaj",
+					"item": [
+						{
+							"name": "Admine Mesaj Gönder",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODMzMzAsImV4cCI6MTY2MDM4NjkzMCwiaWF0IjoxNjYwMzgzMzMwfQ.Fqyl_dD47_PDg9reWtBReE6j2ALsZwmG8LFuajIC68Y",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"subject\": \"string\",\r\n  \"messageDetail\": \"string\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:44397/api/Message/SendMessageToAdmin",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"Message",
+										"SendMessageToAdmin"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Fatura İşlemleri",
+					"item": [
+						{
+							"name": "Ödenmeyen Faturalar",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODMzMzAsImV4cCI6MTY2MDM4NjkzMCwiaWF0IjoxNjYwMzgzMzMwfQ.Fqyl_dD47_PDg9reWtBReE6j2ALsZwmG8LFuajIC68Y",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44397/api/BillOrder/GetUnpaidBillByUser",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"BillOrder",
+										"GetUnpaidBillByUser"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ödenen Faturalar",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44397/api/BillOrder/GetPaidBillByUser",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"BillOrder",
+										"GetPaidBillByUser"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Hesap İşlemleri",
+					"item": [
+						{
+							"name": "Şifre Değiştir",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJyb2xlIjoiw5x5ZSIsImFwYXJ0bWVudEluZm9JZCI6IjUiLCJuYmYiOjE2NjAzODc4ODgsImV4cCI6MTY2MDM5MTQ4OCwiaWF0IjoxNjYwMzg3ODg4fQ.r0Zw3FDDqYh2N7mt9d7rlLf5nmx3QPttIEBLuYnU1Rc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"currentPassword\": \"string\",\r\n  \"newPassword\": \"string\",\r\n  \"rePassword\": \"string\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:44397/api/Authorization/PasswordChange",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44397",
+									"path": [
+										"api",
+										"Authorization",
+										"PasswordChange"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userName\": \"string\",\r\n  \"password\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44397/api/Authorization/Login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44397",
+					"path": [
+						"api",
+						"Authorization",
+						"Login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AdminRegister",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userName\": \"admin\",\r\n  \"password\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44397/api/Authorization/AdminRegister",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44397",
+					"path": [
+						"api",
+						"Authorization",
+						"AdminRegister"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
